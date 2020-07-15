@@ -4,6 +4,7 @@ public class Vetor {
 
 	private String[] elementos;
 	private int tamanhoReal;
+
 	public Vetor(int capacidade) {
 
 		this.elementos = new String[capacidade];
@@ -29,25 +30,33 @@ public class Vetor {
 
 	@Override
 	public String toString() {
-		
-		if(this.tamanhoReal == 0) return null;
-		
+
+		if (this.tamanhoReal == 0)
+			return null;
+
 		StringBuilder elementosString = new StringBuilder();
 		elementosString.append("[");
-		
-		for(int i = 0; i < this.tamanhoReal -1; i++) {
-			
+
+		for (int i = 0; i < this.tamanhoReal - 1; i++) {
+
 			elementosString.append(elementos[i]);
 			elementosString.append(", ");
 		}
-		if(this.tamanhoReal > 0) {
-			elementosString.append(this.elementos[this.tamanhoReal -1]);
+		if (this.tamanhoReal > 0) {
+			elementosString.append(this.elementos[this.tamanhoReal - 1]);
 		}
 		elementosString.append("]");
-		
-		
+
 		return elementosString.toString();
 	}
 	
-	
+	public String busca(int posicao) {
+		
+		if(!(posicao >= 0 && posicao < this.tamanhoReal)) {
+			throw new IllegalArgumentException("Posição inválida");
+		}
+		
+		return this.elementos[posicao];
+	}
+
 }

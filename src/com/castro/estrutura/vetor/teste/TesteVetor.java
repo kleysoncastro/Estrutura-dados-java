@@ -1,9 +1,12 @@
 package com.castro.estrutura.vetor.teste;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import com.castro.estrutura.vetor.Vetor;
 
@@ -41,11 +44,11 @@ public class TesteVetor {
 		@Test
 		public void TestAdicionaComPosicaoInicial() {
 			Vetor vetor = new Vetor(6);
-			vetor.adiciona("elemento 1", 0);
-			vetor.adiciona("elemento 2", 1);
-			vetor.adiciona("elemento 3", 2);
+			vetor.adiciona("elemento 1");
+			vetor.adiciona("elemento 2");
+			vetor.adiciona("elemento 3");
 			
-			assertEquals(true, vetor.adiciona("x", 0));
+			assertEquals(true, vetor.adiciona("x", 0), "Adiciona elemento na posicao inicial");
 		}
 		
 		@Test
@@ -55,18 +58,32 @@ public class TesteVetor {
 			vetor.adiciona("elemento 2", 1);
 			vetor.adiciona("elemento 3", 2);
 			
-			assertEquals(true, vetor.adiciona("x", 3));
+			assertEquals(true, vetor.adiciona("x", 1));
 		}
 		
 		@Test
 		public void TestAdicionaComPosicaoFinal() {
-			Vetor vetor = new Vetor(6);
+			Vetor vetor = new Vetor(5);
 			vetor.adiciona("elemento 1", 0);
 			vetor.adiciona("elemento 2", 1);
 			vetor.adiciona("elemento 3", 2);
 			
-			assertEquals(true, vetor.adiciona("x", 5));
+			 Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			      vetor.adiciona("x", 5);
+			    });
+			
+			
 		}
+		
+
+		 @Test
+		  void testExpectedExceptionWithSuperType() {
+		 
+		    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		      Integer.parseInt("One");
+		    });
+		  }
+
 		
 
 }

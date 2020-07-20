@@ -16,7 +16,9 @@ public class Vetor {
 	 * another method with boolean return in place of the exception
 	 */
 	public boolean adiciona(String elemento) {
-
+		
+		aumentaCapacidade();
+		
 		if (this.tamanhoReal < this.elementos.length) {
 			this.elementos[tamanhoReal] = elemento;
 			this.tamanhoReal++;
@@ -26,6 +28,8 @@ public class Vetor {
 	}
 
 	public boolean adiciona(String elemento, int posicao) {
+		
+		aumentaCapacidade();
 		
 		if (!(posicao >= 0 && posicao < this.elementos.length)) {
 			throw new IllegalArgumentException("Posição inválida");
@@ -39,9 +43,24 @@ public class Vetor {
 		this.tamanhoReal++;
 		return true;
 	}
+	
+	private void aumentaCapacidade() {
+		
+		if (this.elementos.length == this.tamanhoReal) {
+				String[] elementosNovo = new String[this.tamanhoReal * 2];
+				for(int i = 0; i < this.tamanhoReal; i++) {
+					elementosNovo[i] = this.elementos[i];
+				}
+				this.elementos = elementosNovo;
+		}	
+	}
 
 	public int tamanho() {
 		return this.tamanhoReal;
+	}
+	
+	public int length() {
+		return this.elementos.length;
 	}
 
 	@Override

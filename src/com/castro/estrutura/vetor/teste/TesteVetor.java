@@ -77,11 +77,16 @@ public class TesteVetor {
 		
 
 		 @Test
-		  void testExpectedExceptionWithSuperType() {
+		  void testAumentaCapicidade() {
 		 
-		    Assertions.assertThrows(IllegalArgumentException.class, () -> {
-		      Integer.parseInt("One");
-		    });
+		  Vetor vetor = new Vetor(3);
+		  vetor.adiciona("1");
+		  vetor.adiciona("1");
+		  vetor.adiciona("1");
+		  vetor.adiciona("1");
+		  assertEquals(6, vetor.length());
+
+			 
 		  }
 
 		
